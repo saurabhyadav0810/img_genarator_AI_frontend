@@ -1,6 +1,8 @@
 import styled, { ThemeProvider } from "styled-components";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { darkTheme } from "./utils/theme";
+
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 const Container = styled.div`
@@ -19,8 +21,8 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  flex: 3;`;
+  flex: 3;
+`;
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
       <Container>
         <Wrapper>
           <BrowserRouter>
+          <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/post" element={<CreatePost />} />
