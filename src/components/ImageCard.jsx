@@ -68,10 +68,9 @@ const Author = styled.div`
 const ImageCard = ({item}) => {
     return (
         <Card>
-            <LazyLoadImage 
+            <LazyLoadImage style={{borderRadius: "12px"}}
             width="100%"
             height="100%"
-            style={{objectFit: "cover"}}
             src={item?.photo} 
             alt="Generated Image" />
             <HoverOverlay>

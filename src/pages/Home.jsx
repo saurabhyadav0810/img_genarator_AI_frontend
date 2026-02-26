@@ -57,8 +57,6 @@ grid-template-columns: repeat(4, 1fr);
 @media(max-width: 639px) {
 grid-template-columns: repeat(2, 1fr);
 }
-
-
 `;
 
 const Home = () => {
