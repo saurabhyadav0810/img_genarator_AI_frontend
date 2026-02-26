@@ -2,7 +2,7 @@ import { CircularProgress } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
 
-const Button = styled.div`
+const StyledButton = styled.div`
   border-radius: 10px;
   color: white;
   font-size: 14px;
@@ -48,7 +48,7 @@ ${({ flex }) =>
 `}
 `;
 
-const button = ({
+const Button = ({
   text,
   isLoading,
   isDisabled,
@@ -59,7 +59,7 @@ const button = ({
   flex,
 }) => {
   return (
-    <Button
+    <StyledButton
       onClick={() => !isDisabled && !isLoading && onClick()}
       isDisabled={isDisabled}
       type={type}
@@ -75,8 +75,8 @@ const button = ({
       {text}
       {isLoading && <> . . .</>}
       {rightIcon}
-    </Button>
+    </StyledButton>
   );
 };
 
-export default button;
+export default Button;
