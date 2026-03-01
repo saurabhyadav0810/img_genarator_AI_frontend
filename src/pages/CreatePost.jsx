@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import GeneratorImgForm from '../components/GeneratorImgForm.jsx';
 import GeneratedImgCard from '../components/GeneratedimgCard.jsx';
+import { useState } from 'react';
 
 const Container = styled.div`
 flex: 1;
@@ -36,11 +37,24 @@ justify-content: center;
 `;
 
 const CreatePost = () => {
+  const [generateImageLoading, setGenerateImageLoading] = useState(false);
+  const [createpostLoading, setCreatePostLoading] = useState(false);
+  const [post, setPost] = React.useState({
+    name: "",
+    prompt: "",
+    photo: "",
+  });
     return (
     <Container>
         <Wrapper>
-            <GeneratorImgForm />
-            <GeneratedImgCard loading/>
+            <GeneratorImgForm 
+            post={post}
+             setPost={setPost} 
+             createpostLoading={createpostLoading}
+              generateImageLoading={generateImageLoading} 
+            setGenerateImageLoading={setGenerateImageLoading}
+            setCreatePostLoading={setCreatePostLoading} />
+            <GeneratedImgCard src={post?.photo} loading={generateImageLoading} />
         </Wrapper>
     </Container>
     );
