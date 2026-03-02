@@ -1,9 +1,10 @@
 import  { GenerateImage, CreatePost }  from '../Api/index.js';
 import styled from 'styled-components';
 import Button from './button.jsx'; 
+import { useNavigate } from 'react-router-dom';
 import TextInput from './TextInput.jsx';
 import { AutoAwesome, CreateRounded } from '@mui/icons-material';
-
+import { useState } from 'react';
 const Form = styled.div`
 flex: 1;
 padding: 16px 20px;
@@ -52,27 +53,29 @@ const GeneratorImgForm = ({
        setGenerateImageLoading, 
        createpostLoading,
         setCreatePostLoading}) => {
+            const navigate = useNavigate();
+            const [error, setError] = useState("");
+
           const generateImgfun = async () => {
             setGenerateImageLoading(true);
             await GenerateImage({prompt: post.prompt}).then((res)=>{
               setPost({...post, photo: res?.data?.photo});
               setGenerateImageLoading(false);
-            }).catch((err)=>{
-              console.log(err);
+            }).catch((error)=>{
+              setError(error?.response?.data?.message);
               setGenerateImageLoading(false);
             });
           };
           const createPostfun = async () => {
-            setCreatePostLoading(true);
+            setCreatePostLoading(true);                     
             await CreatePost(post).then(()=>{
-              alert("Post Created Successfully");
-              setPost({name: "", prompt: "", photo: ""});
               setCreatePostLoading(false);
-            }).catch((err)=>{
-              console.log(err);
-              alert("Failed to create post");
+                navigate("/");
+            }).catch((error)=>{
+              setError(error?.response?.data?.message);
               setCreatePostLoading(false);
             });
+    
           };
     return (
         <Form>
@@ -92,7 +95,7 @@ const GeneratorImgForm = ({
                 value={post.prompt}
                 handleChange={(e) => setPost({...post, prompt: e.target.value})}
                  />
-               
+               {error && <div style={{color: "red", fontSize: 14}}>{error}</div>}
             </Body>
             <Actions>
                 <Button text="Generate Image" 
