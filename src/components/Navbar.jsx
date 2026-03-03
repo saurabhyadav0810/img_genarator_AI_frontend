@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from './button.jsx';
-import { AddRounded, ExploreRounded } from '@mui/icons-material';
+import { AddRounded, ExploreRounded, LogoutRounded } from '@mui/icons-material';
 import { useNavigate, useLocation } from "react-router-dom";
 const Container = styled.div`
 width: 100%;
@@ -20,14 +20,20 @@ box-sizing: border-box;
 }
 `;
 
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
 
-const Navbar = ()   => {
+const Navbar = ({ user, onLogout }) => {
     const navigate = useNavigate();
     const location = useLocation();
     const path = location.pathname.split("/");
     return (
       <Container>
-        GenAI 
+        GenAI
+        <RightSection>
         {
             path[1] === "post" ?( 
             <Button 
@@ -53,6 +59,13 @@ const Navbar = ()   => {
     }
         />
             )}
+        <Button
+          onClick={onLogout}
+          text="Logout"
+          leftIcon={<LogoutRounded style={{ fontSize: "18px" }} />}
+          type="secondary"
+        />
+        </RightSection>
       </Container>
     );
 };

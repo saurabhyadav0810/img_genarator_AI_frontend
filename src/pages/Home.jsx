@@ -92,11 +92,7 @@ const Home = () => {
         });
     }, [posts, search]);
 
-    // const item = {
-    //     photo: "../2.jpg",
-    //     author: "Saurabh Yadav",
-    //     prompt: "Black theme car"
-    // };
+   
     return <Container>
         <Headline>Explore popular posts in the Community!
             <Span>⦿ Generated With AI ⦿</Span>
