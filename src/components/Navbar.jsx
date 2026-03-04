@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from './button.jsx';
-import { AddRounded, ExploreRounded, LogoutRounded } from '@mui/icons-material';
+import { AddRounded, ExploreRounded, LogoutRounded, ChatRounded } from '@mui/icons-material';
 import { useNavigate, useLocation } from "react-router-dom";
 const Container = styled.div`
 width: 100%;
@@ -32,7 +32,7 @@ const Navbar = ({ user, onLogout }) => {
     const path = location.pathname.split("/");
     return (
       <Container>
-        GenAI
+        Vibely
         <RightSection>
         {
             path[1] === "post" ?( 
@@ -59,6 +59,12 @@ const Navbar = ({ user, onLogout }) => {
     }
         />
             )}
+        <Button
+          onClick={() => navigate("/chat")}
+          text="Chat"
+          leftIcon={<ChatRounded style={{ fontSize: "18px" }} />}
+          type={path[1] === "chat" ? "primary" : "secondary"}
+        />
         <Button
           onClick={onLogout}
           text="Logout"

@@ -39,8 +39,13 @@ justify-content: center;
 const CreatePost = () => {
   const [generateImageLoading, setGenerateImageLoading] = useState(false);
   const [createpostLoading, setCreatePostLoading] = useState(false);
+
+
+  const storedUser = JSON.parse(localStorage.getItem("user") || '{}');
+
   const [post, setPost] = React.useState({
-    name: "",
+    name: storedUser.name || "",
+    username: storedUser.username || "",
     prompt: "",
     photo: "",
   });

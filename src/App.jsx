@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Authentication from "./pages/Authentication";
+import Chat from "./pages/Chat";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -55,6 +56,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/post" element={<CreatePost />} />
+                <Route path="/chat" element={<Chat />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </Routes>
             </BrowserRouter>

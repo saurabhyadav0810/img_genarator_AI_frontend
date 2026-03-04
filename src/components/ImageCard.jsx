@@ -81,7 +81,10 @@ const ImageCard = ({item}) => {
                       justifyContent: "space-between"}}>
                 <Author>
                     <Avatar sx={{ width: "32px", height: "32px" }}>{item?.name?.charAt(0)}</Avatar>
-                    {item?.name}
+                    <div style={{display: "flex", flexDirection: "column"}}>
+                      <span>{item?.name}</span>
+                      {item?.username && <span style={{fontSize: "12px", opacity: 0.7}}>@{item.username}</span>}
+                    </div>
                     </Author>
                     <DownloadRounded onClick={() =>FileSaver.saveAs(item?.photo, "download.jpg")} />
                 </div>

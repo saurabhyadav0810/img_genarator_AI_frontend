@@ -132,6 +132,7 @@ const Authentication = ({ setUser }) => {
   const [success, setSuccess] = useState("");
 
   const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
 
@@ -148,12 +149,12 @@ const Authentication = ({ setUser }) => {
     setLoading(true);
     try {
       if (isRegister) {
-        if (!name || !email) {
-          setError("Name and email are required");
+        if (!name || !username || !email) {
+          setError("Name, username, and email are required");
           setLoading(false);
           return;
         }
-        const res = await UserRegister({ name, email });
+        const res = await UserRegister({ name, username, email });
         setSuccess(res?.data?.message || "OTP sent!");
       } else {
         if (!email) {
@@ -209,11 +210,23 @@ const Authentication = ({ setUser }) => {
           <>
             {isRegister && (
               <InputGroup>
-                <Label>Name</Label>
+                <Label>Full Name</Label>
                 <Input
-                  placeholder="Enter your name"
+                  placeholder="Enter your full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                />
+              </InputGroup>
+            )}
+            {isRegister && (
+              <InputGroup>
+                <Label>Username</Label>
+                <Input
+                  placeholder="Choose a unique username"
+                  value={username}
+                  onChange={(e) =>
+                    setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))
+                  }
                 />
               </InputGroup>
             )}

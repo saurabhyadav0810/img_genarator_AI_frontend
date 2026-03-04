@@ -87,7 +87,13 @@ const GeneratorImgForm = ({
                 <TextInput label="Author" 
                 placeholder="Enter your name" 
                 value={post.name}
-                 handleChange={(e) => setPost({...post, name: e.target.value})} />
+                 handleChange={(e) => setPost({...post, name: e.target.value})}
+                 disabled />
+                <TextInput label="Username" 
+                placeholder="Your username" 
+                value={post.username ? `@${post.username}` : ""}
+                 handleChange={(e) => setPost({...post, username: e.target.value})}
+                 disabled />
                 <TextInput label="Prompt"
                  placeholder="Describe the image you want to generate"  
                 rows="8" 

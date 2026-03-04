@@ -41,6 +41,10 @@ const Input = styled.input`
   &:focus {
     outline: none;
   }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `;
 
 const TextInput = ({
@@ -52,6 +56,7 @@ const TextInput = ({
   textArea,
   rows,
   columns,
+  disabled,
 }) => {
   return (
     <Container>
@@ -65,6 +70,7 @@ const TextInput = ({
           placeholder={placeholder}
           value={value}
           onChange={(e) => handleChange(e)}
+          disabled={disabled}
         />
       </OutlinedInput>
     </Container>
